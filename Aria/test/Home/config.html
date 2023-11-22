@@ -10,6 +10,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
     <script src="../Cadastro/config.js"></script>
+    <link rel="stylesheet" href="config.css">
+
     <script src="index.js"></script> <!-- Adicione um arquivo JS separado para scripts de configuração -->
 </head>
 <body>
@@ -55,7 +57,7 @@
             <form id="notificationSettingsForm">
                 <label for="enableNotifications">Ativar Notificações:</label>
                 <input type="checkbox" id="enableNotifications" name="enableNotifications">
-
+        
                 <label for="notificationInterval">Intervalo de Notificações:</label>
                 <select id="notificationInterval" name="notificationInterval">
                     <option value="15">15 minutos</option>
@@ -63,10 +65,12 @@
                     <option value="60">1 hora</option>
                     <option value="120">2 horas</option>
                 </select>
-
+        
                 <button type="submit">Salvar</button>
             </form>
         </section>
+        
+
     </div>
 
 </body>

@@ -1,76 +1,26 @@
+/* Adicione este trecho ao seu arquivo CSS (perfil.css) */
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+    background-color: #f8f9fa;
 }
 
-h1 {
-    margin-top: 20px;
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    padding: 20px 0;
+    background-color:black;
+    color: #ffffff;
 }
 
 #userProfile {
-    margin: 20px;
     text-align: center;
-}
-
-#userPhoto {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin: 0 auto;
-}
-
-h2 {
-    font-size: 24px;
-    margin: 10px 0;
-}
-
-#userEmail {
-    font-size: 18px;
-}
-
-label {
-    font-weight: bold;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-#saveProfileButton {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
     margin-top: 20px;
-}
-
-#saveProfileButton:hover {
-    background-color: #45a049;
-}
-
-#saveProfileButton:focus {
-    outline: none;
-}
-
-#profileCard {
-    text-align: left;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    margin-top: 20px;
-    max-width: 300px;
-    margin: 0 auto;
 }
 
 .profile-container {
@@ -78,24 +28,41 @@ input[type="text"] {
     display: inline-block;
 }
 
+#userPhoto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
 #editPhotoButton {
     position: absolute;
-    bottom: 0px; /* Ajuste a distância inferior conforme necessário */
-    right: -10px; /* Ajuste a distância direita conforme necessário */
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-size: 22px; /* Ajuste o tamanho do ícone conforme necessário */
-    color: #12a59e; /* Ajuste a cor do ícone conforme necessário */
+    bottom: 0;
+    right: 0;
 }
 
-::-webkit-scrollbar{
-    width: 12px;
-    background-color: red;
+.btn-primary {
+    background-color: black;
+    border-color:black ;
 }
 
-::-webkit-scrollbar-thumb{
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+.btn-danger {
+    background-color: #050505;
+    border-color: white;
+}
+
+#profileCard {
+    margin-top: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#profileCardHeader {
+    background-color: black;
+    color: #ffffff;
+    padding: 10px;
+}
+
+#profileCardContent {
+    padding: 20px;
 }
