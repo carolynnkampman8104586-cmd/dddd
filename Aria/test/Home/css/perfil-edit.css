@@ -58,3 +58,13 @@ textarea {
 }
 
 /* Adicione mais estilos conforme necessário */
+
+::-webkit-scrollbar{
+    width: 12px;
+    background-color: red;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
