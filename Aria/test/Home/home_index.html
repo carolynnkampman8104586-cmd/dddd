@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Home</title> 
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+    <script src="../Cadastro/config.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+
+    <div class="navbar">
+        <img class="logoPrincipal" src="../IMG/logoPrincipal.png" alt="Sua Foto de Perfil">
+       
+    
+        <a href="home_index.html">Home</a>
+        <a href="musica_index.html">Música</a>
+        <a href="cinema_index.html">Cinema</a>
+        <a href="games_index.html">Games</a>
+        <div id="userPhoto" class="profile-pic" onclick="toggleMenu()">
+            <!-- A imagem do usuário será inserida aqui -->
+        </div>
+        <div id="menuContainer">
+            <div class="menu-dropdown" id="menuDropdown">
+                <a href="perfil.html">Perfil</a>
+                <a href="config.html">Configurações</a>
+                <a id="Sair" href="">Sair</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="dadosUser"></div>
+
+   <br><br><br><br>
+
+   <button onclick="toggleFormVisibility()">+</button>
+
+   <form id="fileForm" style="display: none;">
+       <label for="fileInput">Escolher arquivo:</label>
+       <input type="file" id="fileInput" accept="image/video*">
+       
+       <label for="imageTitle">Título da Imagem:</label>
+       <input type="text" id="imageTitle" placeholder="Digite o título da imagem">
+
+       <label for="imageDescription">Descrição da Imagem:</label>
+       <textarea id="imageDescription" placeholder="Digite a descrição da imagem"></textarea>
+       
+       <select id="categorySelect">
+           <option value="musica">Música</option>
+           <option value="cinema">Cinema</option>
+           <option value="games">Games</option>
+           <!-- Adicione mais opções conforme necessário -->
+       </select>
+
+       <button type="button" onclick="uploadFile()">Enviar</button>
+   </form>
+
+    <div id="fileList">
+        <!-- A lista de arquivos será exibida aqui -->
+    </div>
+
+    <!-- Exemplo de adição de vários cards -->
+    <div id="cardContainer">
+        <!-- Os cards serão adicionados aqui dinamicamente -->
+    </div>
+
+    <div id="videoContainer">
+        <!-- Aqui os vídeos serão exibidos -->
+    </div>
+
+    <script>
+       
+    </script>
+
+</body>
+</html>
