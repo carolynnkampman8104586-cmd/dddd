@@ -7,8 +7,7 @@
   messagingSenderId: "279976171170",
   appId: "1:279976171170:web:caa77af161cfb3eca329fb",
   measurementId: "G-KJ7JK4LDPP"
-};*/
-
+};
 const firebaseConfig = {
   apiKey: "AIzaSyD0__2tCTlEQhwv3GwtxU9bBy7dJTz4GCE",
   authDomain: "etec-de4d0.firebaseapp.com",
@@ -18,6 +17,15 @@ const firebaseConfig = {
   messagingSenderId: "3231346956",
   appId: "1:3231346956:web:41135319866475df7c1929",
   measurementId: "G-XDNPFXL9G7"
+};*/
+const firebaseConfig = {
+  apiKey: "AIzaSyDvHeg-I_xxftH6--KGROXoGoSYpKyNeWc",
+  authDomain: "aria-projeto.firebaseapp.com",
+  projectId: "aria-projeto",
+  storageBucket: "aria-projeto.appspot.com",
+  messagingSenderId: "1015071911697",
+  appId: "1:1015071911697:web:79e17253377271087866b0",
+  measurementId: "G-DEQ9HCZ1H5"
 };
 /*
 const firebaseConfig = {
