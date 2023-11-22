@@ -1,19 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
 body {
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(to right, black,red );
-    
+    background-image: linear-gradient(to right, black,red);
+    animation: degrade-animado 5s infinite alternate;
 }
 @media (min-width: 768px) {
     form {
+        padding: 30px;
         width: 45%;
-        height: 640px;
+        height: 750px;
         background-color: rgb(255, 255, 255);
-        border-radius: 10px;
+        border-radius: 5px;
         
     }
     .logo-and-name {
@@ -39,7 +41,33 @@ body {
     form{
         padding: 20px;
     }
-    a{
-        text-decoration: none;
+   
+}
+a{
+    color: black;
+    
+}
+
+a:hover{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+@keyframes degrade-animado{
+    0%{
+        background-position-x:0%;
     }
+    100%{
+        background-position-x:100%;
+    }
+}
+::-webkit-scrollbar{
+    width: 12px;
+    background-color: red;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
 }

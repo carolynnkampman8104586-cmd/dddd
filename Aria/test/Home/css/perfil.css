@@ -90,3 +90,12 @@ input[type="text"] {
     color: #12a59e; /* Ajuste a cor do ícone conforme necessário */
 }
 
+::-webkit-scrollbar{
+    width: 12px;
+    background-color: red;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
