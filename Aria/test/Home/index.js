@@ -105,39 +105,44 @@ function toggleMenu() {
     console.log('Função uploadFile() chamada');
     var fileInput = document.getElementById('fileInput');
     var file = fileInput.files[0];
-  
+
     if (file) {
-      var imageTitle = document.getElementById('imageTitle').value;
-      var imageDescription = document.getElementById('imageDescription').value;
-  
-      firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-          var storageRef = storage.ref('users/' + user.uid + '/files/' + file.name);
-          var metadata = {
-            customMetadata: {
-              'title': imageTitle,
-              'description': imageDescription
+        var imageTitle = document.getElementById('imageTitle').value;
+        var imageDescription = document.getElementById('imageDescription').value;
+
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                var storageRef = storage.ref('users/' + user.uid + '/files/' + file.name);
+                var metadata = {
+                    customMetadata: {
+                        'title': imageTitle,
+                        'description': imageDescription
+                    }
+                };
+
+                var task = storageRef.put(file, metadata);
+
+                task.then(snapshot => {
+                    console.log('Arquivo enviado com sucesso!');
+                    fileInput.value = '';
+                    displayFiles();
+
+                    // Fechar o modal
+                    var fileModal = new bootstrap.Modal(document.getElementById('fileModal'));
+                    fileModal.hide();
+                }).catch(error => {
+                    console.error('Erro no envio do arquivo:', error);
+                });
+            } else {
+                console.error('Usuário não autenticado.');
             }
-          };
-  
-          var task = storageRef.put(file, metadata);
-  
-          task.then(snapshot => {
-            console.log('Arquivo enviado com sucesso!');
-            fileInput.value = '';
-            displayFiles();
-          }).catch(error => {
-            console.error('Erro no envio do arquivo:', error);
-          });
-        } else {
-          console.error('Usuário não autenticado.');
-        }
-      });
+        });
     } else {
-      console.error('Nenhum arquivo selecionado.');
+        console.error('Nenhum arquivo selecionado.');
     }
-  }
-  
+}
+
+
   function displayFiles() {
     var cardContainer = document.getElementById('cardContainer');
     cardContainer.innerHTML = '';
@@ -235,82 +240,7 @@ function toggleMenu() {
   }
   
   document.addEventListener('DOMContentLoaded', displayFiles);
-  /*
-  function displayImages() {
-    var imageContainer = document.getElementById('cardContainer');
   
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        var filesRef = storage.ref('users/' + user.uid + '/files');
-        filesRef.listAll().then(result => {
-          result.items.forEach(item => {
-            item.getDownloadURL().then(url => {
-              item.getMetadata().then(metadata => {
-  
-                let arquivoconfig = user.uid + ".txt"
-                if (metadata.name != arquivoconfig && metadata.contentType.startsWith('image')) {
-  
-                  var cardAndButtonContainer = document.createElement('div');
-                  cardAndButtonContainer.classList.add('card-and-button-container');
-  
-                  var card = document.createElement('div');
-                  card.classList.add('card');
-                  card.onclick = function () {
-                    window.location.href = 'produto.html';
-                  };
-  
-                  var cardImage = document.createElement('img');
-                  cardImage.src = url;
-                  cardImage.alt = 'Imagem do produto';
-  
-                  var cardContent = document.createElement('div');
-                  cardContent.classList.add('card-content');
-  
-                  var title = document.createElement('h2');
-                  var description = document.createElement('p');
-  
-                  if (metadata.customMetadata && metadata.customMetadata.title) {
-                    title.textContent = metadata.customMetadata.title;
-                  } else {
-                    title.textContent = 'Título padrão';
-                  }
-  
-                  if (metadata.customMetadata && metadata.customMetadata.description) {
-                    description.textContent = metadata.customMetadata.description;
-                  } else {
-                    description.textContent = 'Sem descrição';
-                  }
-  
-                  cardContent.appendChild(title);
-                  cardContent.appendChild(description);
-                  cardContent.appendChild(cardImage);
-                  card.appendChild(cardContent);
-  
-                  cardAndButtonContainer.appendChild(card);
-  
-                  var removeButton = document.createElement('button');
-                  removeButton.textContent = 'Remover';
-                  removeButton.addEventListener('click', function () {
-                    removeFile(user.uid, item.name);
-                  });
-                  cardAndButtonContainer.appendChild(removeButton);
-  
-                  imageContainer.appendChild(cardAndButtonContainer);
-                }
-              });
-            });
-          });
-        }).catch(error => {
-          console.error('Erro ao recuperar imagens:', error);
-        });
-      } else {
-        console.error('Usuário não autenticado.');
-      }
-    });
-  }
-  
-  document.addEventListener('DOMContentLoaded', displayImages);
-  */
   function toggleFormVisibility() {
     var fileForm = document.getElementById("fileForm");
     fileForm.style.display = (fileForm.style.display === 'none' || fileForm.style.display === '') ? 'block' : 'none';

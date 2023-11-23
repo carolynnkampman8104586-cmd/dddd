@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="home.css">
     <title>Home</title> 
+    
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -14,17 +16,19 @@
 </head>
 <body>
 
+    <!-- Navbar -->
     <div class="navbar">
         <img class="logoPrincipal" src="../IMG/logoPrincipal.png" alt="Sua Foto de Perfil">
-       
-    
+        
         <a href="home_index.html">Home</a>
         <a href="musica_index.html">Música</a>
         <a href="cinema_index.html">Cinema</a>
         <a href="games_index.html">Games</a>
+        
         <div id="userPhoto" class="profile-pic" onclick="toggleMenu()">
             <!-- A imagem do usuário será inserida aqui -->
         </div>
+        
         <div id="menuContainer">
             <div class="menu-dropdown" id="menuDropdown">
                 <a href="perfil.html">Perfil</a>
@@ -36,29 +40,65 @@
 
     <div id="dadosUser"></div>
 
-   <br><br><br><br>
+    <br><br><br><br>
 
-   <button onclick="toggleFormVisibility()">+</button>
+    <div class="container mt-5">
+        <!-- Botão para abrir o modal -->
+        <button onclick="toggleFormVisibility()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fileModal">+</button>
 
-   <form id="fileForm" style="display: none;">
-       <label for="fileInput">Escolher arquivo:</label>
-       <input type="file" id="fileInput" accept="image/video*">
-       
-       <label for="imageTitle">Título da Imagem:</label>
-       <input type="text" id="imageTitle" placeholder="Digite o título da imagem">
+        <!-- Modal -->
+        <div class="modal" tabindex="-1" role="dialog" id="fileModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Adicionar Imagem</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Formulário de adicionar imagem -->
+                        <form id="fileFormModal">
+                            <form id="fileForm" style="display: none;" class="mt-3">
+                                <div class="form-group">
+                                    <label for="fileInput">Escolher arquivo:</label>
+                                    <input type="file" id="fileInput" accept="image/video*" class="form-control">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label for="imageTitle">Título da Imagem:</label>
+                                    <input type="text" id="imageTitle" placeholder="Digite o título da imagem" class="form-control">
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label for="imageDescription">Descrição da Imagem:</label>
+                                    <textarea id="imageDescription" placeholder="Digite a descrição da imagem" class="form-control"></textarea>
+                                </div>
+                        
+                                <div class="form-group">
+                                    <label for="categorySelect">Categoria:</label>
+                                    <select id="categorySelect" class="form-control">
+                                        <option value="musica">Música</option>
+                                        <option value="cinema">Cinema</option>
+                                        <option value="games">Games</option>
+                        
+                                    </select>
+                                </div>
+                                
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="button" onclick="uploadFile()" class="btn btn-success" data-bs-dismiss="modal">Enviar</button>
+                            </form>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fim do Modal -->
 
-       <label for="imageDescription">Descrição da Imagem:</label>
-       <textarea id="imageDescription" placeholder="Digite a descrição da imagem"></textarea>
-       
-       <select id="categorySelect">
-           <option value="musica">Música</option>
-           <option value="cinema">Cinema</option>
-           <option value="games">Games</option>
-           <!-- Adicione mais opções conforme necessário -->
-       </select>
-
-       <button type="button" onclick="uploadFile()">Enviar</button>
-   </form>
+        <form id="fileForm" style="display: none;" class="mt-3">
+            <!-- Conteúdo do formulário permanece inalterado -->
+        </form>
+    </div>
 
     <div id="fileList">
         <!-- A lista de arquivos será exibida aqui -->
@@ -72,10 +112,6 @@
     <div id="videoContainer">
         <!-- Aqui os vídeos serão exibidos -->
     </div>
-
-    <script>
-       
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>
