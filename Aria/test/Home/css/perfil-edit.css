@@ -37,16 +37,17 @@ textarea {
 }
 
 #saveChangesButton {
-    background-color: #4CAF50;
+    background-color: #f00606;
     color: white;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     margin-top: 20px;
+    border-radius: 5px;
 }
 
 #saveChangesButton:hover {
-    background-color: #45a049;
+    background-color: rgb(12, 4, 4);
 }
 
 #saveChangesButton:focus {
@@ -67,4 +68,44 @@ textarea {
 ::-webkit-scrollbar-thumb{
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+}
+.custom-button {
+    margin-top: 10px; /* Adiciona um espaço superior */
+    background-color: #fa0000; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Borda arredondada */
+    transition: background-color 0.3s; /* Adiciona uma transição suave na cor de fundo */
+
+    /* Estilo para quando o botão estiver em foco (clicado) */
+    &:focus {
+        outline: none; /* Remove a borda de foco padrão */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra sutil quando em foco */
+    }
+
+    /* Estilo para quando o mouse estiver sobre o botão */
+    &:hover {
+        background-color: rgb(8, 8, 8); /* Cor de fundo alterada ao passar o mouse */
+    }
+}
+#backToProfileButton{
+    margin-top: 10px; /* Adiciona um espaço superior */
+    background-color: #fa0000; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 5px; /* Borda arredondada */
+    transition: background-color 0.3s; /* Adiciona uma transição suave na cor de fundo */
+
+    /* Estilo para quando o botão estiver em foco (clicado) */
+    &:focus {
+        outline: none; /* Remove a borda de foco padrão */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra sutil quando em foco */
+    }
+
+    /* Estilo para quando o mouse estiver sobre o botão */
+    &:hover {
+        background-color: rgb(8, 8, 8); /* Cor de fundo alterada ao passar o mouse */
+    }
 }

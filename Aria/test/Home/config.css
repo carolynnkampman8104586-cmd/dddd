@@ -7,37 +7,9 @@ body {
     padding: 0;
 }
 
-.navbar {
-    background-color: #007bff;
-    overflow: hidden;
-}
-
 .logoPrincipal {
     width: 50px;
     height: 50px;
-    margin-right: 20px;
-}
-
-.navbar a {
-    float: left;
-    display: block;
-    color: #ffffff;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbar a:hover {
-    background-color: #ddd;
-    color: #007bff;
-}
-
-.profile-pic {
-    width: 50px;
-    height: 50px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    cursor: pointer;
     margin-right: 20px;
 }
 
@@ -46,24 +18,6 @@ body {
     position: relative;
 }
 
-.menu-dropdown {
-    display: none;
-    position: absolute;
-    background-color: #ffffff;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.menu-dropdown a {
-    color: #000000;
-    padding: 12px 16px;
-    display: block;
-    text-decoration: none;
-}
-
-.menu-dropdown a:hover {
-    background-color: #ddd;
-}
 
 .config-container {
     max-width: 800px;
@@ -125,4 +79,3 @@ button:hover {
     margin-right: 10px;
 }
 
-/* Adicione estilos adicionais se necessário */

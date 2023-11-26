@@ -9,6 +9,7 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
 }
 
 .navbar a {
@@ -17,8 +18,26 @@
   font-size: 16px;
   text-decoration: none;
   padding: 10px 20px;
+  overflow: hidden;
+  position: relative;
+}
+.navbar a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #ff8c00; /* Cor laranja */
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out;
 }
 
+.navbar a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
 .logoPrincipal {
   width: 40px;
   height: 40px;
@@ -46,7 +65,7 @@
   left: 1px;
   right: 1px;
   border-radius: 50%;
-  box-shadow: 0 0 10px 5px rgba(227, 244, 247, 0.918);
+  box-shadow: 0 0 10px 5px rgba(255, 128, 0, 0.918);
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -162,10 +181,13 @@ h1 {
 
 /* Card */
 .card {
+  height: 300px;
+  display: flex; /* Adicionado para alinhar itens filhos (imagem e conteúdo) */
+  flex-direction: column; /* Organiza os itens verticalmente */
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 15px;
-  width: 100%; /* Adjusted width */
+  width: 100%;
   text-align: center;
   cursor: pointer;
   margin: 10px;
@@ -180,13 +202,15 @@ h1 {
 
 .card img {
   width: 100%;
-  height: 200px;
+  height: auto; /* Alterado para 'auto' para manter a proporção original */
+  max-height: 200px; /* Define uma altura máxima (ajuste conforme necessário) */
   object-fit: cover;
 }
 
 .card-content {
   margin-top: 10px;
 }
+
 
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -197,12 +221,40 @@ h1 {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }
-@media (max-width: 768px) {
+.file-modal-button {
+  position: fixed;
+  width: 50px; /* Substitua pelo valor desejado */
+  height: 50px; /* Substitua pelo valor desejado */
+  bottom: 40px; /* Ajuste conforme necessário para definir a distância da parte inferior */
+  right: 40px; /* Ajuste conforme necessário para definir a distância da borda direita */
+  background-color: rgb(0, 204, 255); /* Cor de fundo do botão (substitua pela sua cor desejada) */
+  color: white;
+  padding: 0px; /* Reduzi o padding para centralizar melhor o "+" */
+  border: none;
+  border-radius: 50%; /* Alterado para 50% para garantir que seja redondo */
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-sizing: border-box; /* Adicionado transition para suavizar o efeito */
+  z-index: 2; /* Substitua pelo valor desejado, maior do que a z-index dos cartões */
+}
+/* Adicione um estilo hover para destacar o botão quando o mouse passa por cima */
+.file-modal-button:hover {
+  background-color: #ec7e00; 
+  box-shadow: 0 0 10px 5px rgba(0, 225, 255, 0.918);/* Cor de fundo alterada para o efeito hover */
+  transform: scale(1.2); /* Efeito de escala durante o hover */
+}
 
-  .navbar a {
-    width: 100%; /* Largura total para cada link em telas menores */
-    box-sizing: border-box;
-    text-align: center; /* Centraliza o texto para cada link */
-    margin-bottom: 5px; /* Adiciona algum espaço entre os links */
+@media (max-width: 768px) {
+  #cardContainer {
+    flex-direction: column; /* Exibe os cards em uma coluna em telas pequenas */
+  }
+  .file-modal-button {
+    bottom: 10px;
+    right: 10px;
+  }
+  .card {
+    width: 100%; /* Ocupa toda a largura da tela em telas pequenas */
+    margin: 10px 0; /* Adiciona um espaçamento entre os cards */
   }
 }

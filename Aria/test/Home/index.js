@@ -43,50 +43,46 @@ document.addEventListener('DOMContentLoaded', function () {
   } else if (currentPage.includes('musica_index.html')) {
     showMedia('musica', fileList);
   }
+  function showMedia(category, targetElement) {
+    targetElement.innerHTML = '';
+  
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        const baseRef = storage.ref(`users/${user.uid}/files/`);
+        const categoriesRef = category ? baseRef.child(`${category}/`) : baseRef;
+  
+        categoriesRef.listAll().then(result => {
+          console.log('Número de itens no resultado:', result.items.length);
+  
+          result.items.forEach(item => {
+            item.getDownloadURL().then(url => {
+              item.getMetadata().then(metadata => {
+                let arquivoconfig = user.uid + ".txt";
+                if (metadata.name != arquivoconfig && (metadata.contentType.startsWith('image') || metadata.contentType.startsWith('video'))) {
+                  console.log('Criando card para:', metadata.customMetadata.title);
+                  criarCardComDescricaoETitulo(metadata.customMetadata.title, metadata.customMetadata.description, url, metadata, user, item.name);
+                }
+              });
+            }).catch(error => {
+              console.error('Erro ao recuperar metadados:', error);
+            });
+          });
+        }).catch(error => {
+          console.error('Erro ao recuperar arquivos:', error);
+        });
+      } else {
+        console.error('Usuário não autenticado.');
+      }
+    });
+  }
+  if (categorySelect) {
+    categorySelect.addEventListener('change', function () {
+      const selectedCategory = categorySelect.value;
+      showMedia(selectedCategory);
+    });
+  }
 });
 
-function showMedia(category, targetElement) {
-  targetElement.innerHTML = '';
-
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      const baseRef = storage.ref(`users/${user.uid}/files/`);
-      const categoriesRef = category ? baseRef.child(`${category}/`) : baseRef;
-
-      categoriesRef.listAll().then(result => {
-        console.log('Número de itens no resultado:', result.items.length);
-
-        result.items.forEach(item => {
-          item.getDownloadURL().then(url => {
-            item.getMetadata().then(metadata => {
-              let arquivoconfig = user.uid + ".txt";
-              if (metadata.name != arquivoconfig && (metadata.contentType.startsWith('image') || metadata.contentType.startsWith('video'))) {
-                console.log('Criando card para:', metadata.customMetadata.title);
-                criarCardComDescricaoETitulo(metadata.customMetadata.title, metadata.customMetadata.description, url, metadata, user, item.name);
-              }
-            });
-          }).catch(error => {
-            console.error('Erro ao recuperar metadados:', error);
-          });
-        });
-      }).catch(error => {
-        console.error('Erro ao recuperar arquivos:', error);
-      });
-    } else {
-      console.error('Usuário não autenticado.');
-    }
-  });
-}
-
-
-
-// Evento de escuta para a mudança na seleção de categoria
-if (categorySelect) {
-  categorySelect.addEventListener('change', function () {
-    const selectedCategory = categorySelect.value;
-    showMedia(selectedCategory);
-  });
-}
 
 function uploadFile() {
   console.log('Função uploadFile() chamada');
@@ -114,7 +110,7 @@ function uploadFile() {
         task.then(snapshot => {
           console.log('Arquivo enviado com sucesso!');
           fileInput.value = '';
-          displayFiles();
+          displayFiles(category);
 
           // Fechar o modal
           var fileModal = new bootstrap.Modal(document.getElementById('fileModal'));
@@ -176,6 +172,7 @@ function criarCardComDescricaoETitulo(titulo, descricao, url, metadata, user, fi
     var cardImage = document.createElement('img');
     cardImage.src = url;
     cardImage.alt = 'Imagem do produto';
+    cardImage.classList.add('card-image'); // Adiciona uma classe à imagem
     card.appendChild(cardImage);
   } else if (metadata.contentType.startsWith('video')) {
     var cardVideo = document.createElement('video');
@@ -211,7 +208,7 @@ function criarCardComDescricaoETitulo(titulo, descricao, url, metadata, user, fi
 }
 
 // Chame a função displayFiles no carregamento da página
-document.addEventListener('DOMContentLoaded', displayFiles);
+document.addEventListener('DOMContentLoaded', displayFiles());
 
 
 function getCurrentCategory() {
@@ -253,6 +250,7 @@ function removeFile(userId, fileName) {
     displayFiles(); // Chama a função para atualizar a exibição dos arquivos após a remoção
   }
 }
+document.addEventListener('DOMContentLoaded', displayFiles(category));
 function toggleFormVisibility() {
   var fileForm = document.getElementById("fileForm");
   fileForm.style.display = (fileForm.style.display === 'none' || fileForm.style.display === '') ? 'block' : 'none';
