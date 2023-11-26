@@ -4,6 +4,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="home.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-xr72NS62QvhrlJy+6tK5qPffA3ABQb8CUeQiiwlF0y0/0bB3AtPLO3Eh1KFpTH7Jv3bPBCmg0lMvU7kZlNecIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,7 +12,24 @@
     <title>Perfil</title>
 </head>
 <body>
+    <div class="navbar">
+        <img class="logoPrincipal" src="../IMG/logoPrincipal.png" alt="Sua Foto de Perfil">
+
+        <a href="home_index.html">Home</a>
+        <a href="musica_index.html">Música</a>
+        <a href="cinema_index.html">Cinema</a>
+        <a href="games_index.html">Games</a>
+
+        <div id="menuContainer">
+            <div class="menu-dropdown" id="menuDropdown">
+                <a href="perfil.html">Perfil</a>
+                <a href="config.html">Configurações</a>
+                <a id="Sair" href="">Sair</a>
+            </div>
+        </div>
+    </div>
     <div class="container">
+        
         <div class="profile-header">
             <h1>Dados do Perfil do Usuário</h1>
         </div>
